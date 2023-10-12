@@ -11,17 +11,21 @@ class Game_sprite(sprite.Sprite):
         self.speed = speed
     def reset(self):
         win.blit(self.image, (self.rect.x, self.rect.y))
+ball = Game_sprite('ball.png', 200, 100, 50, 50, 10)
 back = (111, 137, 79)
 win_h = 500
-win_w = 500
+win_w = 600
 win = display.set_mode((win_w, win_h))
 
 game=True
+finish = False
 clock=time.Clock()
 while game:
-    win.fill(back)
     for e in event.get():
         if e.type == QUIT:
             game = False
+    if not finish:
+        win.fill(back)
+        ball.reset()
     display.update()
     clock.tick(60)
